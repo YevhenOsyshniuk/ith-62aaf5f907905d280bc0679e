@@ -20,21 +20,12 @@ public class Main {
 
     //Задача 3.
     public static int findWordPosition(String source, String target) {
-
-        if (source.contains(target)) {
-            return source.indexOf(target);
-        } else {
-            return -1;
-        }
+        return source.indexOf(target);
     }
 
     //Задача 4
     public static String reverseString(String str1) {
-        String result = "";
-        for (int i = 0; i < str1.length(); i++) {
-            result = str1.charAt(i) + result;
-        }
-        return result;
+        return new StringBuilder(str1).reverse().toString();
     }
 
     //Задача 5
@@ -63,12 +54,7 @@ public class Main {
 
             } else {
                 charPosition = new StringBuilder("###############");
-                int length;
-                if (selectedWord.length() < str1.length()) {
-                    length = selectedWord.length();
-                } else {
-                    length = str1.length();
-                }
+                int length = Math.min(selectedWord.length(),str1.length());;
                 for (int i = 0; i < length; i++) {
                     if (str1.charAt(i) == selectedWord.charAt(i)) {
                         charPosition.setCharAt(i, str1.charAt(i));
