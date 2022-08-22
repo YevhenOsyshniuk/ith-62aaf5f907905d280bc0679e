@@ -1,23 +1,22 @@
 package ua.ithillel.lesson7.homework;
 
 public abstract class Animal {
-    String name;
-    public static int animalCounter;
+    private final String name;
+    private static int animalCounter;
 
-
-
-    public Animal(String name) {
+    protected Animal(String name) {
         this.name = name;
         animalCounter++;
+    }
+    public String getName() {
+        return name;
     }
 
     public static int getAnimalCounter() {
         return animalCounter;
     }
 
-    public void runDistance(int distanceOfRun){
-    }
+    public abstract void runDistance(int distanceOfRun);
 
-   public void swimDistance (int distanceOfSwim){
-    }
+    public abstract void swimDistance(int distanceOfSwim);
 }

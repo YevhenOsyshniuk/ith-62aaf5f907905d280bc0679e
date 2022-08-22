@@ -1,7 +1,7 @@
 package ua.ithillel.lesson7.homework;
 
 public class Cat extends Animal{
-    public static int catCounter;
+    private static int catCounter;
 
     public Cat(String name) {
         super(name);
@@ -12,17 +12,17 @@ public class Cat extends Animal{
         return catCounter;
     }
 
+    @Override
     public void runDistance(int distanceOfRun) {
-        super.runDistance(distanceOfRun);
         if (distanceOfRun <= 200 ) {
-            System.out.println(super.name + " run on distance " + distanceOfRun +" meters" );
+            System.out.println(super.getName() + " run on distance " + distanceOfRun +" meters" );
         } else {
-            System.out.println(super.name + " don't run such fare");
+            System.out.println(super.getName() + " don't run such fare");
         }
     }
 
+    @Override
     public void swimDistance(int distanceOfSwim) {
-        super.swimDistance(distanceOfSwim);
-        System.out.println(super.name + " can't swim" );
+        System.out.println(super.getName() + " can't swim" );
     }
 }
