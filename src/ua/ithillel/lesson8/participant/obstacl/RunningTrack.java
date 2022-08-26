@@ -3,7 +3,7 @@ package ua.ithillel.lesson8.participant.obstacl;
 
 import ua.ithillel.lesson8.participant.members.Participant;
 
-public class RunningTrack extends Obstacles implements iObstacles {
+public class RunningTrack  implements Obstruction {
 
     private int distanceOfTrack;
 
@@ -12,8 +12,8 @@ public class RunningTrack extends Obstacles implements iObstacles {
     }
 
     @Override
-    public String overcome(String name) {
-        return (name + " пробежал беговую дорожку");
+    public String overcome(Participant participant) {
+        return (participant.getName() + " пробежал беговую дорожку");
     }
 
     @Override

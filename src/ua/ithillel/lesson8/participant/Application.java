@@ -4,7 +4,7 @@ import ua.ithillel.lesson8.participant.members.Cat;
 import ua.ithillel.lesson8.participant.members.Human;
 import ua.ithillel.lesson8.participant.members.Participant;
 import ua.ithillel.lesson8.participant.members.Robot;
-import ua.ithillel.lesson8.participant.obstacl.iObstacles;
+import ua.ithillel.lesson8.participant.obstacl.Obstruction;
 import ua.ithillel.lesson8.participant.obstacl.RunningTrack;
 import ua.ithillel.lesson8.participant.obstacl.Wall;
 
@@ -18,18 +18,18 @@ public class Application {
         Wall wall = new Wall(1);
 
 
-        System.out.println(wall.overcome(robot1.getName())); // д.з. пункт 5
-        System.out.println(wall.overcome(cat1.getName())); // д.з. пункт 5
-        System.out.println(wall.overcome((human1.getName()))); // д.з. пункт 5
-        System.out.println(runningTrack.overcome(robot1.getName())); // д.з. пункт 5
-        System.out.println(runningTrack.overcome(cat1.getName())); // д.з. пункт 5
-        System.out.println(runningTrack.overcome(human1.getName())); // д.з. пункт 5
+        System.out.println(wall.overcome(robot1)); // д.з. пункт 5
+        System.out.println(wall.overcome(cat1)); // д.з. пункт 5
+        System.out.println(wall.overcome((human1))); // д.з. пункт 5
+        System.out.println(runningTrack.overcome(robot1)); // д.з. пункт 5
+        System.out.println(runningTrack.overcome(cat1)); // д.з. пункт 5
+        System.out.println(runningTrack.overcome(human1)); // д.з. пункт 5
 
         Participant[] participants = {cat1, human1, robot1}; // д.з. пункт 6
-        iObstacles[] classObstacles = {wall, runningTrack}; // д.з. пункт 6
+        Obstruction[] classObstacles = {wall, runningTrack}; // д.з. пункт 6
         for (Participant participant : participants) { // д.з. пункт 7
-            for (iObstacles classObstacle : classObstacles) {
-                String result = classObstacle.overcome(participant.getName());
+            for (Obstruction classObstacle : classObstacles) {
+                String result = classObstacle.overcome(participant);
                 System.out.println(result);
             }
         }

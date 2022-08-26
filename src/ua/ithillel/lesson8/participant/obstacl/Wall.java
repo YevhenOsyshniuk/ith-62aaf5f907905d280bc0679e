@@ -3,7 +3,7 @@ package ua.ithillel.lesson8.participant.obstacl;
 
 import ua.ithillel.lesson8.participant.members.Participant;
 
-public class Wall extends Obstacles implements iObstacles {
+public class Wall  implements Obstruction {
 
     private int heightOfWall;
 
@@ -12,8 +12,8 @@ public class Wall extends Obstacles implements iObstacles {
     }
 
     @Override
-    public String overcome(String name) {
-        return (name + " перепрыгнул через стену");
+    public String overcome(Participant participant) {
+        return (participant.getName() + " перепрыгнул через стену");
     }
 
     @Override
