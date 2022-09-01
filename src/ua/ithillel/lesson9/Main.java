@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class Main {
     public static void main(String[] args) {
 
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         Integer[] array = new Integer[]{1, 2, 3, 4};
         List<Integer> list1 = new ArrayList<>();
         List<String> name = Arrays.asList("ball", "bat", "glove", "glove", "glove", "car", "police", "house", "wall", "run");
@@ -35,6 +35,7 @@ public class Main {
         System.out.println(toList(array));  //дз п.2
         System.out.println(findUnique(list1)); //дз п.3
         calcOccurance(name); //дз п.4
+        findOccurance(name);
 
     }
 
@@ -59,18 +60,38 @@ public class Main {
     public static void calcOccurance(List<String> name) {
 
         Collections.sort(name);
-        Object o = name.get(0);
-        int n = 1;
+        String str1 = name.get(0);
+        int occurance = 1;
         for (int i = 1; i < name.size(); i++) {
-            Object t = name.get(i);
-            if (o.equals(t)) {
-                n++;
+            String str2 = name.get(i);
+            if (name.get(0).equals(str2)) {
+                occurance++;
             } else {
-                System.out.println("word: " + o + " occurance: " + n);
-                n = 1;
-                o = t;
+                System.out.println("word: " + str1 + " occurance: " + occurance);
+                occurance = 1;
+                str1 = str2;
             }
         }
-        System.out.println("word: " + o + " occurance: " + n);
+        System.out.println("word: " + str1 + " occurance: " + occurance);
+    }
+
+    public static List<String> findOccurance(List<String> name) {
+        Collections.sort(name);
+        String str1 = name.get(0);
+        int occurance = 1;
+        List<String> names2 = new ArrayList<>();
+        for (int i = 1; i < name.size(); i++) {
+            String str2 = name.get(i);
+            if (str1.equals(str2)) {
+                occurance++;
+            } else {
+                names2.add("{name: " + str1 + " , occurance " + occurance + "}");
+                occurance = 1;
+                str1 = str2;
+            }
+        }
+        names2.add("{name: " + str1 + " , occurance " + occurance + "}");
+        names2.forEach(System.out::println);
+        return names2;
     }
 }

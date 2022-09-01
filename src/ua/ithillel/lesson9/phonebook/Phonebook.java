@@ -1,42 +1,32 @@
 package ua.ithillel.lesson9.phonebook;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Phonebook {
-    private final ArrayList<Record> records;
+    private static List<Record> records;
 
 
     public Phonebook() {
         this.records = new ArrayList<>();
     }
 
-    public void add(Record record) {
-        boolean containsRecord = records.contains(record);
-        if (!containsRecord) {
-            records.add(record);
-        } else {
-            records.remove(record);
-            records.add(record);
-        }
+    public static void add(Record record) {
         records.add(record);
     }
 
 
-    public String find(String name) {
+    public Record find(String name) {
         for (Record record : records) {
-            if (record.name().equals(name)) {
-                return record.numbers().get(0) + record.name();
+            if (record.getName().equals(name)) {
+                return record;
             }
         }
         return null;
     }
 
-    public String findAll(String name) {
-        for (Record record : records) {
-            if (record.name().equals(name)) {
-                return record.numbers() + record.name();
-            }
-        }
-        return null;
+    public List<Record> findAll(String name) {
+        return records.stream().filter(element -> element.getName().equals(name)).collect(Collectors.toList());
     }
+
 }
