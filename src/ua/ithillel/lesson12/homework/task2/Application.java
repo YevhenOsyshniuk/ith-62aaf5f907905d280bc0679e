@@ -13,12 +13,12 @@ public class Application {
         List<Orange> someOranges = List.of(new Orange(), new Orange(), new Orange());
         List<Apples> someApples = List.of(new Apples(), new Apples(), new Apples());
 
-        applesBox.addOneTypeOfFruit(new Apples());
-        applesBox2.addOneTypeOfFruit(new Apples());
-        orangeBox.addOneTypeOfFruit(new Orange());
+        applesBox.addFruit(new Apples());
+        applesBox2.addFruit(new Apples());
+        orangeBox.addFruit(new Orange());
 
-        applesBox.addManyTypesOfFruits(someApples);
-        orangeBox.addManyTypesOfFruits(someOranges);
+        applesBox.addFruit(someApples);
+        orangeBox.addFruit(someOranges);
 
         System.out.println(applesBox.getWeight());
         System.out.println(orangeBox.getWeight());

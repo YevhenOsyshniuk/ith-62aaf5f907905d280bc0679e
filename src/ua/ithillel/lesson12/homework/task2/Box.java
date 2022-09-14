@@ -7,16 +7,20 @@ public class Box<T extends Fruits> {
     private final List<T> boxOfFruits = new ArrayList<>();
 
 
-    public void addOneTypeOfFruit(T fruit) {
+    public void addFruit(T fruit) {
         boxOfFruits.add(fruit);
     }
 
-    public void addManyTypesOfFruits(List<T> newFruits) {
+    public void addFruit(List<T> newFruits) {
         boxOfFruits.addAll(newFruits);
     }
 
     public float getWeight() {
-        return boxOfFruits.get(0).getWeight() * boxOfFruits.size();
+        if (boxOfFruits.isEmpty()) {
+            return 0;
+        } else {
+            return boxOfFruits.get(0).getWeight() * boxOfFruits.size();
+        }
     }
 
     public boolean compare(Box<? extends Fruits> box) {
