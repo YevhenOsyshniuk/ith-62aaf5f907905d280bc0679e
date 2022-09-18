@@ -17,7 +17,6 @@ public class Application {
         box(cargoBox);
         System.out.println(discriminant(3, 2, 3));
         System.out.println(randomizer());
-
     }
 
     public static void checkStringIsEmpty(String str) {
