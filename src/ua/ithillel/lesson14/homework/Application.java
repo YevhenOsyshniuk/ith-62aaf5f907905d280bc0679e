@@ -1,6 +1,5 @@
 package ua.ithillel.lesson14.homework;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -36,14 +35,10 @@ public class Application {
         getBox.andThen(sentBox).accept(cargoBox);
     }
 
-    public static int discriminant(int a, int b, int c) {
-        List<Integer> list = new ArrayList<>();
-        list.add(a);
-        list.add(b);
-        list.add(c);
-
-        Function<List<Integer>, Object> calcFunc = x -> list.get(1) * list.get(1) - 4 * list.get(0) * list.get(2);
-        return (int) calcFunc.apply(list);
+    public static Double discriminant(double a, double b, double c) {
+        List<Double> list = List.of(a, b, c);
+        Function<List<Double>, Double> calcFunc = x -> b * b - 4 * a * c;
+        return calcFunc.apply(list);
     }
 
     public static int randomizer() {
