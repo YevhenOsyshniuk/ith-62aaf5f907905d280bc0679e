@@ -8,15 +8,15 @@ import java.util.List;
 
 public class TestRunner {
 
-    public TestRunner() {
-    }
-
-    public static void start(Class<TestClass> testClass) {
+        public static void start(Class<?> testClass) {
         checkForSuits(testClass);
         runningTests(testClass);
     }
 
-    public static void checkForSuits(Class<TestClass> testClass) {
+    public static void checkForSuits(Class<?> testClass) {
+        if (testClass == null){
+            throw new NullPointerException("Incoming class is null");
+        }
         Method[] testMethods = testClass.getDeclaredMethods();
         int counterBeforeSuits = 0;
         int counterAfterSuits = 0;
@@ -30,13 +30,46 @@ public class TestRunner {
             }
             if (counterBeforeSuits > 1) {
                 throw new RuntimeException("BeforeSuite annotations is more than 1");
-            } else if (counterAfterSuits > 1) {
+            }
+            if (counterAfterSuits > 1) {
                 throw new RuntimeException("AfterSuite annotations is more than 1");
             }
         }
     }
 
-    public static void runningTests(Class<TestClass> testClass) {
+    public static void runningTests(Class<?> testClass) {
+        Object testObject = createInstance(testClass);
+
+        Method[] methods = testClass.getDeclaredMethods();
+        List<Method> declaredMethods = new ArrayList<>();
+        for (Method method1 : testClass.getDeclaredMethods()) {
+            if (method1.isAnnotationPresent(Test.class)) {
+                declaredMethods.add(method1);
+            }
+        }
+        declaredMethods.sort(Comparator.comparingInt(method -> method.getAnnotation(Test.class).priority()));
+        List<Method> testMethods = new java.util.ArrayList<>((declaredMethods));
+        for (Method method : methods) {
+            if (method.isAnnotationPresent(BeforeSuite.class)) {
+                testMethods.add(0, method);
+            }
+            if (method.isAnnotationPresent(AfterSuite.class)) {
+                testMethods.add(method);
+            }
+        }
+        try {
+            for (Method method : testMethods) {
+                method.invoke(testObject);
+            }
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static Object createInstance(Class<?> testClass) {
+        if (testClass == null){
+            throw new NullPointerException("Incoming class is null");
+        }
         Object testObject;
         try {
             testObject = testClass.getDeclaredConstructor().newInstance();
@@ -44,30 +77,6 @@ public class TestRunner {
                  NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
-
-        Method[] methods = testClass.getDeclaredMethods();
-        List<Method> list = new ArrayList<>();
-        for (Method method1 : testClass.getDeclaredMethods()) {
-            if (method1.isAnnotationPresent(Test.class)) {
-                list.add(method1);
-            }
-        }
-        list.sort(Comparator.comparingInt(method -> method.getAnnotation(Test.class).priority()));
-        List<Method> testMethod = new java.util.ArrayList<>((list));
-        for (Method method : methods) {
-            if (method.isAnnotationPresent(BeforeSuite.class)) {
-                testMethod.add(0, method);
-            }
-            if (method.isAnnotationPresent(AfterSuite.class)) {
-                testMethod.add(method);
-            }
-        }
-        try {
-            for (Method method : testMethod) {
-                method.invoke(testObject);
-            }
-        } catch (InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        return testObject;
     }
 }
