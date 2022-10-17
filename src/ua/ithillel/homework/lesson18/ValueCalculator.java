@@ -1,43 +1,33 @@
 package ua.ithillel.homework.lesson18;
 
+import java.util.Arrays;
+
 public class ValueCalculator {
-    private static final int SIZE_OF_ARRAY = 2000000;
-    private static final int HALF_SIZE_OF_ARRAY = SIZE_OF_ARRAY / 2;
-    private float[] testArray = new float[SIZE_OF_ARRAY];
+    private static final int VALUES_FOR_CALCULATION = 2000000;
+    private static final int HALF_SIZE_OF_VALUE_FOR_CALCULATION = VALUES_FOR_CALCULATION / 2;
+    private float[] testArrayToThreads = new float[VALUES_FOR_CALCULATION];
 
-    public ValueCalculator() {
-    }
-
-      public synchronized void doCalc() {
+    public void doCalc() {
         long start = System.currentTimeMillis();
-        for (int i = 0; i < SIZE_OF_ARRAY; i++) {
-            testArray[i] = 2;
-        }
+        Arrays.fill(testArrayToThreads, 2);
 
-        float arrayLength = testArray.length;
+        float arrayLength = testArrayToThreads.length;
         float[] partOfArray1 = new float[(int) ((arrayLength + 1) / 2)];
         float[] partOfArray2 = new float[(int) (arrayLength - partOfArray1.length)];
-        System.arraycopy(testArray, 0, partOfArray1, 0, partOfArray1.length);
-        System.arraycopy(testArray, partOfArray1.length, partOfArray2, 0, partOfArray2.length);
+        System.arraycopy(testArrayToThreads, 0, partOfArray1, 0, partOfArray1.length);
+        System.arraycopy(testArrayToThreads, partOfArray1.length, partOfArray2, 0, partOfArray2.length);
 
-        var thread1 = new Thread(String.valueOf(testArray));
-        for (int i = 0; i < SIZE_OF_ARRAY; i++) {
-            testArray[i] = (float) (testArray[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
-        }
-
-        var thread2 = new Thread(String.valueOf(testArray));
-        for (int i = 0; i < SIZE_OF_ARRAY; i++) {
-            testArray[i] = (float) (testArray[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
-        }
+        var thread1 = new Thread(doArrayChange(testArrayToThreads));
+        var thread2 = new Thread(doArrayChange(testArrayToThreads));
 
         thread1.start();
         thread2.start();
 
         try {
-            thread1.join();
+             thread1.join();
             thread2.join();
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Something going wrong in running threads in ValueCalculator class");
         }
 
         joinArrays(partOfArray1, partOfArray2);
@@ -52,5 +42,13 @@ public class ValueCalculator {
         System.arraycopy(partOfArray2, 0, joinedArray, partOfArray1.length, partOfArray2.length);
 
         return joinedArray;
+    }
+
+    static synchronized Runnable doArrayChange(float[] testArray) {
+        return () -> {
+            for (int i = 0; i < VALUES_FOR_CALCULATION; i++) {
+                testArray[i] = (float) (testArray[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
+            }
+        };
     }
 }
