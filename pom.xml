@@ -28,6 +28,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version.org.projectlombok>1.18.24</version.org.projectlombok>
         <version.org.junit.jupiter>5.9.1</version.org.junit.jupiter>
+        <stakeholderFullName>Yevhen Osyshniuk</stakeholderFullName>
     </properties>
 
     <dependencies>
@@ -57,7 +58,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>${project.artifactId}-Yevhen Osyshniuk-${project.version}</finalName>
+        <finalName>${project.artifactId}-${stakeholderFullName}-${project.version}</finalName>
     </build>
 
 </project>
