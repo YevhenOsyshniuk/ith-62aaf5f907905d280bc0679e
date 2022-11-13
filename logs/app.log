@@ -1,0 +1,7 @@
+2022-11-14 01:25:36,688 [main] INFO  ua.ithillel.lesson21.homework.CoffeeOrderBoard - Adding new name: Alen to the queue in class ua.ithillel.lesson21.homework.CoffeeOrderBoard
+2022-11-14 01:25:36,691 [main] INFO  ua.ithillel.lesson21.homework.CoffeeOrderBoard - Adding new name: Yoda to the queue in class ua.ithillel.lesson21.homework.CoffeeOrderBoard
+2022-11-14 01:25:36,692 [main] INFO  ua.ithillel.lesson21.homework.CoffeeOrderBoard - Adding new name: Obi-van to the queue in class ua.ithillel.lesson21.homework.CoffeeOrderBoard
+2022-11-14 01:25:36,692 [main] INFO  ua.ithillel.lesson21.homework.CoffeeOrderBoard - Adding new name: John Snow to the queue in class ua.ithillel.lesson21.homework.CoffeeOrderBoard
+2022-11-14 01:25:36,697 [main] INFO  ua.ithillel.lesson21.homework.CoffeeOrderBoard - Getting nearest deliver: [1  |  Alen, 2  |  Yoda, 3  |  Obi-van, 4  |  John Snow] in class ua.ithillel.lesson21.homework.CoffeeOrderBoard
+2022-11-14 01:25:36,708 [main] INFO  ua.ithillel.lesson21.homework.CoffeeOrderBoard - Getting nearest deliver with number: 4 in class ua.ithillel.lesson21.homework.CoffeeOrderBoard
+2022-11-14 01:25:36,708 [main] INFO  ua.ithillel.lesson21.homework.CoffeeOrderBoard - Getting current queue in class ua.ithillel.lesson21.homework.CoffeeOrderBoard
