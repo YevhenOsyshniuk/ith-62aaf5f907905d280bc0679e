@@ -3,7 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>ua.ithillel</groupId>
     <artifactId>ith-62aaf5f907905d280bc0679e</artifactId>
     <version>1.0.0-SNAPSHOT</version>
@@ -13,7 +12,6 @@
         <name>Hillel IT School</name>
         <url>https://lms.ithillel.ua/</url>
     </organization>
-
     <developers>
         <developer>
             <name>Yevhen Osyshniuk</name>
@@ -28,9 +26,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version.org.projectlombok>1.18.24</version.org.projectlombok>
         <version.org.junit.jupiter>5.9.1</version.org.junit.jupiter>
+        <version.org.junit.platform>1.9.1</version.org.junit.platform>
         <stakeholderFullName>Yevhen Osyshniuk</stakeholderFullName>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -56,9 +54,14 @@
             <version>5.9.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-console-standalone</artifactId>
+            <version>${version.org.junit.platform}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <finalName>${project.artifactId}-${stakeholderFullName}-${project.version}</finalName>
     </build>
-
 </project>
