@@ -7,6 +7,7 @@
     <groupId>ua.ithillel</groupId>
     <artifactId>ith-62aaf5f907905d280bc0679e</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <packaging>war</packaging>
     <name>Hillel IT School Project</name>
     <description>Hillel IT School Project of group ith-62aaf5f907905d280bc0679e</description>
     <organization>
@@ -28,7 +29,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version.org.projectlombok>1.18.24</version.org.projectlombok>
         <version.org.junit.jupiter>5.9.1</version.org.junit.jupiter>
-        <stakeholderFullName>Yevhen Osyshniuk</stakeholderFullName>
+        <version.jakarta.servlet>6.0.0</version.jakarta.servlet>
+        <stakeholderFullName>YevhenOsyshniuk</stakeholderFullName>
     </properties>
 
     <dependencies>
@@ -56,8 +58,29 @@
             <version>5.9.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>${version.jakarta.servlet}</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M7</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
         <finalName>${project.artifactId}-${stakeholderFullName}-${project.version}</finalName>
     </build>
 
