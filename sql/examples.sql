@@ -18,20 +18,20 @@ FROM mainland
 WHERE id = 5;
 
 ALTER TABLE Mainland
-ADD existing boolean NOT NULL default TRUE;
+ADD existing boolean NOT NULL DEFAULT TRUE;
 
 UPDATE Mainland
 SET existing = FALSE
 WHERE name = 'Pangea';
 
-alter table city
-add constraint check_population
-check (population >= 0);
+ALTER TABLE city
+ADD CONSTRAINT check_population
+CHECK (population >= 0);
 
 --TASK 2
 SELECT ci.name city_name, c.name country_name
 FROM city ci
-LEFT JOIN country c on c.id = ci.country_id;
+LEFT JOIN country c ON c.id = ci.country_id;
 
 SELECT population
 FROM city
@@ -43,7 +43,7 @@ WHERE country_id = 1;
 
 SELECT country_id, AVG(population)
 FROM city
-group by country_id;
+GROUP BY country_id;
 
 UPDATE city
 SET population = 4000000
@@ -57,5 +57,5 @@ COMMIT;
 
 SELECT c.name name_of_country, count(ci.id) number_of_cities
 FROM country c
-JOIN city ci on c.id = ci.country_id
-group by c.id;
+JOIN city ci ON c.id = ci.country_id
+GROUP BY c.id;
