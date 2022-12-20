@@ -5,6 +5,6 @@ import lombok.SneakyThrows;
 public class ClientApplication {
     @SneakyThrows
     public static void main(String[] args) {
-        new ClientEngine();
+        new ClientEngine().start();
     }
 }
