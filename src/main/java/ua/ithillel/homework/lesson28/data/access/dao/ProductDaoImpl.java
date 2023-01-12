@@ -1,8 +1,8 @@
-package ua.ithillel.homework.lesson28.data.access.product;
+package ua.ithillel.homework.lesson28.data.access.dao;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import ua.ithillel.homework.lesson28.data.access.service.ProductDaoService;
+import ua.ithillel.homework.lesson28.data.access.mappers.ProductMapper;
 import ua.ithillel.homework.lesson28.entity.Product;
 
 import javax.sql.DataSource;
@@ -10,17 +10,17 @@ import java.util.Optional;
 
 
 @Repository
-public class ProductDao implements ProductDaoService {
+public class ProductDaoImpl implements ProductDao {
     private final JdbcTemplate jdbcTemplate;
 
-    public ProductDao(DataSource dataSource) {
+    public ProductDaoImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     private static final String FIND_ALL_QUERY = "SELECT * FROM product";
     private static final String FIND_BY_ID = "SELECT * FROM product WHERE id = ?";
     private static final String ADD_PRODUCT = "INSERT INTO product (name, price) values (?, ?)";
-    private static final String REMOVE = "DELETE FROM product WHERE id =?";
+    private static final String REMOVE_BY_ID = "DELETE FROM product WHERE id =?";
 
     @Override
     public Optional<Product> findById(long id) {
@@ -33,8 +33,8 @@ public class ProductDao implements ProductDaoService {
     }
 
     @Override
-    public void remove(long id) {
-        jdbcTemplate.update(REMOVE, id);
+    public void removeById(long id) {
+        jdbcTemplate.update(REMOVE_BY_ID, id);
     }
 
     @Override

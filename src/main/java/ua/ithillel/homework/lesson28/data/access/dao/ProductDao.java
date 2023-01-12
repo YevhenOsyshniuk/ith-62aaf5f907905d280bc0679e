@@ -1,11 +1,10 @@
-package ua.ithillel.homework.lesson28.data.access.service;
+package ua.ithillel.homework.lesson28.data.access.dao;
 
-import ua.ithillel.homework.lesson28.data.access.service.DaoService;
 import ua.ithillel.homework.lesson28.entity.Product;
 
 import java.util.Optional;
 
-public interface ProductDaoService extends DaoService<Product> {
+public interface ProductDao extends AbstractDao<Product> {
     @Override
     Optional<Product> findById(long id);
 
@@ -13,7 +12,7 @@ public interface ProductDaoService extends DaoService<Product> {
     void add(Product product);
 
     @Override
-    void remove(long id);
+    void removeById(long id);
 
     Iterable<Product> findAll();
 }

@@ -1,4 +1,4 @@
-package ua.ithillel.homework.lesson28.data.access;
+package ua.ithillel.homework.lesson28.data.access.service;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
