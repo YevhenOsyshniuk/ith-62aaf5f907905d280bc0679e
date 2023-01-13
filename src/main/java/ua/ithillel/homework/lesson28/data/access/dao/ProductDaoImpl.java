@@ -8,7 +8,6 @@ import ua.ithillel.homework.lesson28.entity.Product;
 import javax.sql.DataSource;
 import java.util.Optional;
 
-
 @Repository
 public class ProductDaoImpl implements ProductDao {
     private final JdbcTemplate jdbcTemplate;

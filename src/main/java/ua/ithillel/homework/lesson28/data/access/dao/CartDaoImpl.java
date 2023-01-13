@@ -4,7 +4,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ua.ithillel.homework.lesson28.data.access.mappers.CartMapper;
 import ua.ithillel.homework.lesson28.entity.Cart;
-import ua.ithillel.homework.lesson28.entity.Product;
 
 import javax.sql.DataSource;
 import java.util.Optional;
@@ -27,8 +26,8 @@ public class CartDaoImpl implements CartDao {
     }
 
     @Override
-    public void add(Product product) {
-        jdbcTemplate.update(ADD_PRODUCT, product.getName(), product.getPrice());
+    public void add(Cart cart) {
+        jdbcTemplate.update(ADD_PRODUCT, cart.getName());
     }
 
     @Override

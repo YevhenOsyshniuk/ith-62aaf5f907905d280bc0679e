@@ -9,8 +9,7 @@ ALTER TABLE product
 
 CREATE TABLE cart(
                                id SERIAL PRIMARY KEY,
-                               name VARCHAR (30)  NOT NULL,
-                               price FLOAT     NOT NULL
+                               name VARCHAR (30)  NOT NULL
 );
 
 ALTER TABLE cart

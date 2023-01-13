@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface AbstractDao<T> {
     Optional<T> findById(long id);
 
-    void add(Product product);
+    void add(T product);
 
     void removeById(long id);
 
