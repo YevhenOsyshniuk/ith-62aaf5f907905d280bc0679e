@@ -1,0 +1,17 @@
+package ua.ithillel.lesson29.homework.entity;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.experimental.FieldDefaults;
+
+@Data
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class Product {
+    long id;
+    String name;
+    float cost;
+
+}
+

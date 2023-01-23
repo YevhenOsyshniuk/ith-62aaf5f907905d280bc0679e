@@ -37,6 +37,8 @@
         <version.org.springframework>6.0.3</version.org.springframework>
         <version.javax.annotation>1.3.2</version.javax.annotation>
         <version.org.postgresql>42.5.1</version.org.postgresql>
+        <version.org.org.springframework.webmvc>6.0.4</version.org.org.springframework.webmvc>
+        <version.jstl>1.2</version.jstl>
         <stakeholderFullName>YevhenOsyshniuk</stakeholderFullName>
     </properties>
 
@@ -96,7 +98,16 @@
             <artifactId>postgresql</artifactId>
             <version>${version.org.postgresql}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${version.org.org.springframework.webmvc}</version>
+        </dependency>
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${version.jstl}</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
