@@ -1,16 +1,19 @@
 package ua.ithillel.lesson31.homework.dao;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ua.ithillel.lesson31.homework.model.Student;
 
 import java.util.List;
-
+@Transactional
 @Repository
 public class StudentDaoImpl implements StudentDao {
 
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
+    @Autowired
     public StudentDaoImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -51,6 +54,4 @@ public class StudentDaoImpl implements StudentDao {
         session.close();
         return students;
     }
-
-
 }

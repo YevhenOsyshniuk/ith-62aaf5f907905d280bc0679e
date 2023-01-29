@@ -17,21 +17,12 @@ import java.util.Properties;
 public class HibernateSession {
 
     @Bean
-    public static LocalSessionFactoryBean sessionFactoryBean(DataSource dataSource) {
+    public LocalSessionFactoryBean sessionFactory() {
         var sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource);
+        sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("ua.ithillel.lesson31.homework.model");
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
-    }
-
-    private static Properties hibernateProperties() {
-        var props = new Properties();
-        props.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL94Dialect");
-        props.setProperty("hibernate.show_sql", "true");
-        props.setProperty("hibernate.highlight_sql", "true");
-        props.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-        return props;
     }
 
     @Bean
@@ -44,10 +35,19 @@ public class HibernateSession {
         return ds;
     }
 
+    private Properties hibernateProperties() {
+        var props = new Properties();
+        props.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL94Dialect");
+        props.setProperty("hibernate.show_sql", "true");
+        props.setProperty("hibernate.highlight_sql", "true");
+        props.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        return props;
+    }
+
     @Bean
-    public PlatformTransactionManager platformTransactionManager(LocalSessionFactoryBean sessionFactory) {
+    public PlatformTransactionManager platformTransactionManager() {
         var txManager = new HibernateTransactionManager();
-        txManager.setSessionFactory(sessionFactory.getObject());
+        txManager.setSessionFactory(sessionFactory().getObject());
         return txManager;
     }
 
