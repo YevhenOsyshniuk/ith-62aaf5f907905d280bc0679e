@@ -11,3 +11,9 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
+logging:
+  level:
+    ua.ithillel.lesson32.homework: info
+    org.springframework.web: info
+  file:
+    path: logs/
