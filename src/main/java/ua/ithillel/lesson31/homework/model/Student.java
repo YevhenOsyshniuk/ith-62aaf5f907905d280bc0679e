@@ -16,6 +16,7 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id")
     long id;
     @Column(name = "name", nullable = false)
     String name;

@@ -21,28 +21,36 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public void save(Student student) {
         var session = sessionFactory.openSession();
+        session.beginTransaction();
         session.save(student);
+        session.getTransaction().commit();
         session.close();
     }
 
     @Override
     public void update(Student student) {
         var session = sessionFactory.openSession();
+        session.beginTransaction();
         session.update(student);
+        session.getTransaction().commit();
         session.close();
     }
 
     @Override
     public void remove(Student student) {
         var session = sessionFactory.openSession();
+        session.beginTransaction();
         session.remove(student);
+        session.getTransaction().commit();
         session.close();
     }
 
     @Override
     public Student getById(long id) {
         var session = sessionFactory.openSession();
+        session.beginTransaction();
         var student = session.byId(Student.class).getReference(id);
+        session.getTransaction().commit();
         session.close();
         return student;
     }
@@ -50,7 +58,9 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public List<Student> getAll() {
         var session = sessionFactory.openSession();
+        session.beginTransaction();
         List<Student> students = session.createQuery("from Student ").list();
+        session.getTransaction().commit();
         session.close();
         return students;
     }
