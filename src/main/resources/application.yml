@@ -1,0 +1,9 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    ua.ithillel.homework.lesson33: info
+    org.springframework.web: info
+  file:
+    path: logs/
